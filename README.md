@@ -14,9 +14,7 @@ This Python script generates an SVG progress bar based on a given percentage. Th
 
 Here are some examples of progress bars generated using the script:
 
-![Example 1](images/example1.svg)
-
-![Example 3](images/example3.svg)
+![Example 1](images/example1.svg) ![Example 3](images/example3.svg)
 
 ## Usage
 
