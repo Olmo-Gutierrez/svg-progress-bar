@@ -27,10 +27,13 @@
         <input type="range" id="bar_height" name="bar_height" min="10" max="100" value="50">
 
         <label for="fixed_sections">Fixed Sections:</label>
-        <input type="checkbox" id="fixed_sections" name="fixed_sections">
+        <input type="checkbox" id="fixed_sections" name="fixed_sections" checked>
 
             <label for="section_length">Section Length:</label>
             <input type="range" id="section_length" name="section_length" min="10" max="50" value="10">
+
+        <button id="save-svg-button">Save as SVG</button>
+
         
         <input type="hidden" id="section_length_hidden" name="section_length_hidden" value="10">
 
@@ -73,7 +76,30 @@
                 // Update the progress bar when the checkbox value changes
                 updateProgressBar();
             });
-
+            $('#save-svg-button').on('click', function() {
+                // Get the SVG content from the progress bar container
+                var svgContent = $('#progress-bar-container').html();
+              
+                // Create a Blob object with the SVG content
+                var blob = new Blob([svgContent], { type: 'image/svg+xml' });
+              
+                // Create a URL for the Blob object
+                var url = window.URL.createObjectURL(blob);
+              
+                // Create a temporary link element to trigger the download
+                var link = document.createElement('a');
+                link.href = url;
+                link.download = 'progress_bar.svg';
+              
+                // Append the link element to the document and trigger the click event
+                document.body.appendChild(link);
+                link.click();
+              
+                // Clean up the URL and link element
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(link);
+              });
+              
             // Update the progress bar when the page is loaded
             updateProgressBar();
         });
