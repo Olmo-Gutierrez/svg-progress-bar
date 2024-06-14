@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Progress Bar Generator</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Progress Bar Generator</h1>
+    <div id="progress-bar-container"></div>
+    <form id="progress-bar-form">
+        <label for="percentage">Percentage:</label>
+        <input type="range" id="percentage" name="percentage" min="0" max="100" value="80">
+
+        <label for="spacing">Spacing:</label>
+        <input type="range" id="spacing" name="spacing" min="0" max="20" value="7">
+
+        <label for="stroke_width">Stroke Width:</label>
+        <input type="range" id="stroke_width" name="stroke_width" min="1" max="10" value="6">
+
+        <label for="minus_radius">Corner percentage:</label>
+        <input type="range" id="minus_radius" name="minus_radius" min="0" max="100" value="10">
+
+        <label for="bar_width_total">Bar Width:</label>
+        <input type="range" id="bar_width_total" name="bar_width_total" min="100" max="800" value="400">
+
+        <label for="bar_height">Bar Height:</label>
+        <input type="range" id="bar_height" name="bar_height" min="10" max="100" value="50">
+
+        <label for="fixed_sections">Fixed Sections:</label>
+        <input type="checkbox" id="fixed_sections" name="fixed_sections">
+
+            <label for="section_length">Section Length:</label>
+            <input type="range" id="section_length" name="section_length" min="10" max="50" value="10">
+        
+        <input type="hidden" id="section_length_hidden" name="section_length_hidden" value="10">
+
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        
+        $(document).ready(function() {
+            function updateProgressBar() {
+                var formData = $('#progress-bar-form').serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '/update_progress_bar',
+                    data: formData,
+                    success: function(response) {
+                        $('#progress-bar-container').html(response);
+                    }
+                });
+            }
+
+            // Listen for input events on the sliders and checkbox
+            $('#progress-bar-form input').on('input', function() {
+                updateProgressBar();
+            });
+
+            // Listen for change events on the checkbox
+            $('#fixed_sections').on('change', function() {
+                if ($(this).is(':checked')) {
+                    // Disable the section length slider
+                    $('#section_length').prop('disabled', true);
+                    // Set the value of the hidden input element to the value of the section length slider
+                    $('#section_length_hidden').val($('#section_length').val());
+                } else {
+                    // Enable the section length slider
+                    $('#section_length').prop('disabled', false);
+                    // Set the value of the section length slider to the value of the hidden input element
+                    $('#section_length').val($('#section_length_hidden').val());
+                }
+                // Update the progress bar when the checkbox value changes
+                updateProgressBar();
+            });
+
+            // Update the progress bar when the page is loaded
+            updateProgressBar();
+        });
+    </script>
+</body>
+</html>
