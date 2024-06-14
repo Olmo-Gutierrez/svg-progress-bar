@@ -4,7 +4,7 @@ import math
 spacing = 7  # Spacing between the inner and outer stroke
 stroke_width = 6  # Stroke width
 section_length = 10  # Original section length
-percentage = 100  # Desired percentage of the bar length
+percentage = 50  # Desired percentage of the bar length
 minus_radius = 10  # Adjust corner radius
 
 # Calculate the width and height of the progress bar
@@ -14,9 +14,9 @@ bar_height = 50
 
 def calculate_section_length(percentage, section_length):
     # Calculate the number of sections
-    num_sections = math.floor((bar_width_total * percentage / 100) / section_length)
+    num_sections = math.floor(bar_width_total / section_length)
     # Calculate the closest section length
-    closest_section_length = (bar_width_total * percentage / 100) / (num_sections + 1)
+    closest_section_length = bar_width_total / (num_sections + 1)
     return closest_section_length
 
 def create_progress_bar(percentage, spacing, stroke_width, section_length, minus_radius):
