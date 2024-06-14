@@ -1,3 +1,4 @@
 Flask==2.0.3
 svgwrite==1.4.3
 gunicorn==20.1.0
+Werkzeug==2.0.3
