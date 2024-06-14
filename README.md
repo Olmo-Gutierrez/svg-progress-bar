@@ -16,7 +16,7 @@ Here are some examples of progress bars generated using the script:
 
 ![Example 1](images/example1.svg)
 
-![Example 2](images/example2.svg)
+![Example 2](images/image2.png)
 
 ![Example 3](images/example3.svg)
 
