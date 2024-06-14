@@ -1,0 +1,2 @@
+Flask==2.0.3
+svgwrite==1.4.3
