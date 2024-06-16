@@ -1,5 +1,5 @@
 # SVG Progress Bar Generator
-**You can try it here: https://svg-progress-bar.onrender.com/**
+**You can try it here: https://svg-progress-bar.onrender.com/**  (it might take up to a minute to load because of the hosting)
 
 _Note that the slides may be laggy, because the objective of the code was to generate an image, and here, you are generating multiple images a second_
 
